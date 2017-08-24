@@ -79,6 +79,7 @@ function receivedMessage(event) {
 
   var messageText = message.text;
   var messageAttachments = message.attachments;
+  handleMessage(message, senderID);
 
   if (messageText) {
 
@@ -194,4 +195,18 @@ function receivedPostback(event) {
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
   sendTextMessage(senderID, "Postback called by Bhanu");
+}
+
+function firstEntity(nlp, name) {
+    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+}
+
+function handleMessage(message, senderID) {
+    // check greeting is here and is confident
+    const greeting = firstEntity(message.nlp, 'greeting');
+    if (greeting && greeting.confidence > 0.8) {
+        sendTextMessage(senderID, 'Hi there!');
+    } else {
+        // default logic
+    }
 }
