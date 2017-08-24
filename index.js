@@ -79,7 +79,7 @@ function receivedMessage(event) {
 
   var messageText = message.text;
   var messageAttachments = message.attachments;
-  handleMessage(message, senderID);
+  
 
   if (messageText) {
 
@@ -91,7 +91,8 @@ function receivedMessage(event) {
         break;
 
       default:
-        sendTextMessage(senderID, messageText);
+        //sendTextMessage(senderID, messageText);
+        handleMessage(message, senderID);
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
@@ -202,6 +203,10 @@ function firstEntity(nlp, name) {
 }
 
 function handleMessage(message, senderID) {
+  var messageId = message.mid;
+
+  var messageText = message.text;
+  var messageAttachments = message.attachments;
     // check greeting is here and is confident
     console.log("In handlemessage " + message);
     const greeting = firstEntity(message.nlp, 'greeting');
@@ -209,6 +214,6 @@ function handleMessage(message, senderID) {
         console.log("In handlemessage if " + greeting);
         sendTextMessage(senderID, 'Hi there!');
     } else {
-        // default logic
+        sendTextMessage(senderID, messageText);
     }
 }
