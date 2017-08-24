@@ -203,8 +203,10 @@ function firstEntity(nlp, name) {
 
 function handleMessage(message, senderID) {
     // check greeting is here and is confident
+    console.log("In handlemessage " + message);
     const greeting = firstEntity(message.nlp, 'greeting');
     if (greeting && greeting.confidence > 0.8) {
+        console.log("In handlemessage if " + greeting);
         sendTextMessage(senderID, 'Hi there!');
     } else {
         // default logic
