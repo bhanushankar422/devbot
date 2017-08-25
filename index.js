@@ -208,7 +208,8 @@ function handleMessage(message, senderID) {
   var messageText = message.text;
   var messageAttachments = message.attachments;
     // check greeting is here and is confident
-    console.log("In handlemessage " + message);
+    console.log("In handlemessage ");
+    console.log(JSON.stringify(message));
     const greeting = firstEntity(message.nlp, 'greeting');
     if (greeting && greeting.confidence > 0.8) {
         console.log("In handlemessage if " + greeting);
