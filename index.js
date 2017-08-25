@@ -211,10 +211,11 @@ function handleMessage(message, senderID) {
     console.log("In handlemessage ");
     console.log(JSON.stringify(message));
     const greeting = firstEntity(message.nlp, 'greeting');
+    console.log(JSON.stringify(greeting));
     if (greeting && greeting.confidence > 0.8) {
         console.log("In handlemessage if " + greeting);
         sendTextMessage(senderID, 'Hi there!');
     } else {
-        sendTextMessage(senderID, 'Response' + messageText);
+        sendTextMessage(senderID, 'Response ' + messageText);
     }
 }
