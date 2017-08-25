@@ -215,6 +215,6 @@ function handleMessage(message, senderID) {
         console.log("In handlemessage if " + greeting);
         sendTextMessage(senderID, 'Hi there!');
     } else {
-        sendTextMessage(senderID, messageText);
+        sendTextMessage(senderID, 'Response' + messageText);
     }
 }
