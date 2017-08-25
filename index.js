@@ -210,7 +210,7 @@ function handleMessage(message, senderID) {
     // check greeting is here and is confident
     console.log("In handlemessage ");
     console.log(JSON.stringify(message));
-    const greeting = firstEntity(message.nlp, 'greeting');
+    const greeting = firstEntity(message.nlp, 'greetings');
     console.log(JSON.stringify(greeting));
     if (greeting && greeting.confidence > 0.8) {
         console.log("In handlemessage if " + greeting);
