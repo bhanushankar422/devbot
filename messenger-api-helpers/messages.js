@@ -228,6 +228,35 @@ const getStarted = {
   ],
 };
 
+const doctorsCarosel = (recipientId) => {
+    const user = UserStore.get(recipientId) || UserStore.insert({id: recipientId});
+    const giftOptions = user.getRecommendedGifts();
+
+    const carouselItems = Doctor.DOCTORS.map(doctorToCarouselItem);
+
+    return {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'generic',
+                elements: carouselItems,
+            },
+        },
+    };
+};
+
+const doctorToCarouselItem = ({id, name, description, images: {original}}) => {
+    return {
+        title: name,
+        image_url: original,
+        subtitle: description,
+        buttons: [
+            viewDetailsButton(id),
+            chooseGiftButton(id),
+        ],
+    };
+};
+
 export default {
   helloRewardMessage,
   preferencesUpdatedMessage,
