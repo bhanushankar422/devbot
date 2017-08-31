@@ -362,6 +362,8 @@ function receivedMessage(event) {
         break;
 
         case 'appointment':
+            var selectionInit = Object.assign({}, userSelectionObj);
+            userSelectionMap.set(recipientID,selectionInit);
             sendAppointments(senderID);
             break;
 
