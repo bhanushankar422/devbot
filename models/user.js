@@ -40,38 +40,5 @@ export default class User {
         this.arrivalPeriod = arrivalPeriod;
     }
 
-    getSelectedDoctor() {
-        return GiftStore.getByCategoryId(this.giftCategory);
-    }
-
-    setSelectedDoctor() {
-        return GiftStore.getByCategoryId(this.giftCategory);
-    }
-
-    getSelectedDoctor() {
-        return GiftStore.getByCategoryId(this.giftCategory);
-    }
-
-    setSelectedDoctor() {
-        return GiftStore.getByCategoryId(this.giftCategory);
-    }
-
-    getSelectedDoctor() {
-        return GiftStore.getByCategoryId(this.giftCategory);
-    }
-
-    setSelectedDoctor() {
-        return GiftStore.getByCategoryId(this.giftCategory);
-    }
-
-  /**
-   * Set the users preferedGift to the gift matching the id
-   *
-   * @param {String} giftId Id of the gift to set as the users prefered gift.
-   * @returns {undefined}
-   * @memberOf User
-   */
-  setPreferedGift(giftId) {
-    this.preferedGift = GiftStore.get(giftId);
-  }
+    
 }

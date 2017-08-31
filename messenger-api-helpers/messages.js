@@ -21,6 +21,8 @@ import UserStore from '../stores/user-store';
 // ===== UTILS =================================================================
 import {dateString} from '../utils/date-string-format';
 
+import Doctor from '../Doctor';
+
 const SERVER_URL = process.env.SERVER_URL;
 
 /**
@@ -230,7 +232,6 @@ const getStarted = {
 
 const doctorsCarosel = (recipientId) => {
     const user = UserStore.get(recipientId) || UserStore.insert({id: recipientId});
-    const giftOptions = user.getRecommendedGifts();
 
     const carouselItems = Doctor.DOCTORS.map(doctorToCarouselItem);
 
@@ -267,4 +268,5 @@ export default {
   giftChangedMessage,
   persistentMenu,
   getStarted,
+  doctorsCarosel,
 };

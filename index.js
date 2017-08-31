@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+const messages = require('./messenger-api-helpers/messages')
 
 const PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN
 
@@ -85,9 +86,14 @@ function receivedMessage(event) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    switch (messageText) {
+    var caseStatement = messageText.toLowerCase()
+    switch (caseStatement) {
       case 'generic':
         sendGenericMessage(senderID);
+        break;
+
+      case 'doctors':
+        sendDoctorsList(senderID);
         break;
 
       default:
@@ -218,4 +224,18 @@ function handleMessage(message, senderID) {
     } else {
         sendTextMessage(senderID, 'Response ' + messageText);
     }
+}
+
+function sendDoctorsList(senderID) {
+  // check greeting is here and is confident
+  console.log("In sendDoctorsList ");
+  var msg = messages.doctorsCarosel(senderID);
+  console.log(JSON.stringify(msg));
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: msg
+  };
+  callSendAPI(messageData);
 }
