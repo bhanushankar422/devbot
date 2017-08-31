@@ -204,6 +204,7 @@ var doctors = {
 };
 
 var timings = {
+
     "text": "Select timings",
     "quick_replies":[
         {
@@ -324,11 +325,31 @@ function receivedMessage(event) {
   console.log("Received message for user %d and page %d at %d with message:", 
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
+  var quick_reply = '';
+  if(message && message.quick_reply){
+      quick_reply = message['quick_reply']['payload'];
+  }
+  console.log('Quick reply %s', quick_reply);
+
+    if(quick_reply && quick_reply!=''){
+        var selection = Object.assign({}, userSelectionObj);
+        if(userSelectionMap.has(recipientID)){
+            selection = userSelectionMap.get(recipientID);
+        }
+        if(quick_reply.startsWith('TIME')){
+            selection['time'] = payload;
+            console.log('Payload has TIME');
+        }
+        console.log(JSON.stringify(selection));
+
+        userSelectionMap.set(recipientID,selection);
+    }
 
   var messageId = message.mid;
 
   var messageText = message.text;
   var messageAttachments = message.attachments;
+
 
   if (messageText) {
 
@@ -467,11 +488,11 @@ function receivedPostback(event) {
     }
     if(payload.startsWith('HOSPITAL')){
         selection['hospital'] = payload;
-        console.log('Payload has DOCTOR');
+        console.log('Payload has HOSPITAL');
     }
     if(payload.startsWith('TIME')){
         selection['time'] = payload;
-        console.log('Payload has DOCTOR');
+        console.log('Payload has TIME');
     }
     console.log(JSON.stringify(selection));
 
