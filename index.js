@@ -358,7 +358,7 @@ function receivedPostback(event) {
   // button for Structured Messages. 
   var payload = event.postback.payload;
 
-    var selection = Object.assign({}, this.dependent);
+    var selection = Object.assign({}, userSelectionObj);
     if(userSelectionMap.has(recipientID)){
         selection = userSelectionMap.get(recipientID);
     }
