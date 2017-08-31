@@ -8,7 +8,7 @@ const app = express()
 
 const PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN
 
-var resp = {
+var doctors = {
     attachment: {
         type: 'template',
         payload: {
@@ -139,6 +139,24 @@ var resp = {
     }
 };
 
+
+
+var appointments = {
+    "text": "Select doctor or hospital",
+    "quick_replies":[
+        {
+            "content_type":"text",
+            "title":"Doctors",
+            "payload":"doctors"
+        },
+        {
+            "content_type":"text",
+            "title":"Hospitals",
+            "payload":"hospitals"
+        }
+    ]
+}
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -222,6 +240,10 @@ function receivedMessage(event) {
       case 'generic':
         sendGenericMessage(senderID);
         break;
+
+        case 'appointment':
+            sendAppointments(senderID);
+            break;
 
       case 'doctors':
         sendDoctorsList(senderID);
@@ -360,7 +382,7 @@ function handleMessage(message, senderID) {
 function sendDoctorsList(recipientId) {
   // check greeting is here and is confident
   console.log("In sendDoctorsList ");
-  var msg = resp;
+  var msg = doctors;
   console.log(JSON.stringify(msg));
   var messageData = {
     recipient: {
@@ -369,4 +391,32 @@ function sendDoctorsList(recipientId) {
     message: msg
   };
   callSendAPI(messageData);
+}
+
+function sendAppointments(recipientId) {
+    // check greeting is here and is confident
+    console.log("In sendAppointments ");
+    var msg = appointments;
+    console.log(JSON.stringify(msg));
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: msg
+    };
+    callSendAPI(messageData);
+}
+
+function sendHospitals(recipientId) {
+    // check greeting is here and is confident
+    console.log("In sendHospitals ");
+    var msg = appointments;
+    console.log(JSON.stringify(msg));
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: msg
+    };
+    callSendAPI(messageData);
 }
