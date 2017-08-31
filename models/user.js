@@ -1,6 +1,6 @@
-import Doctor from '../Doctor';
-import Hospital from '../Hospital';
-export default class User {
+const Doctor = require('../Doctor')
+const Hospital = require('../Hospital')
+module.exports = class User {
 
   constructor(attributes) {
     const {
@@ -40,5 +40,5 @@ export default class User {
         this.arrivalPeriod = arrivalPeriod;
     }
 
-    
+
 }

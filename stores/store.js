@@ -11,7 +11,7 @@
  * @export
  * @class Store
  */
-export default class Store {
+module.exports = class Store {
   constructor() {
     this.data = new Map();
   }

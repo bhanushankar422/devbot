@@ -1,27 +1,7 @@
-/**
- * Copyright 2017-present, Facebook, Inc. All rights reserved.
- *
- * This source code is licensed under the license found in the
- * LICENSE file in the root directory of this source tree.
- */
+const UserStore = require('../stores/user-store')
+//const {dateString} = require('../utils/date-string-format')
+const Doctor = require('../Doctor')
 
-/* eslint-disable camelcase */
-/* eslint-disable max-len */
-
-/*
- * MESSAGES
- *
- * Objects and methods that create objects that represent
- * messages sent to Messenger users.
- */
-
-// ===== STORES ================================================================
-import UserStore from '../stores/user-store';
-
-// ===== UTILS =================================================================
-import {dateString} from '../utils/date-string-format';
-
-import Doctor from '../Doctor';
 
 const SERVER_URL = process.env.SERVER_URL;
 
@@ -199,7 +179,7 @@ const giftOptionsCarosel = (recipientId) => {
 const giftChangedMessage = (recipientId) => {
   const {preferedGift, dateOfBirth} = UserStore.get(recipientId);
   return {
-    text: `Perfect! You can look forward to the ${preferedGift.name} on ${dateString(dateOfBirth)}. `,
+    text: `Perfect! You can look forward to the ${preferedGift.name} on . `,
   };
 };
 
@@ -256,17 +236,4 @@ const doctorToCarouselItem = ({id, name, description, images: {original}}) => {
             chooseGiftButton(id),
         ],
     };
-};
-
-export default {
-  helloRewardMessage,
-  preferencesUpdatedMessage,
-  currentGiftText,
-  currentGiftButton,
-  giftOptionsText,
-  giftOptionsCarosel,
-  giftChangedMessage,
-  persistentMenu,
-  getStarted,
-  doctorsCarosel,
 };

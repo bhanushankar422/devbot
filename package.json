@@ -10,9 +10,12 @@
   "author": "Bhanu Pottipareddy",
   "license": "ISC",
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "request": "^2.81.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "request": "^2.81.0"
   }
 }
