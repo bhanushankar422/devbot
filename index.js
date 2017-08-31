@@ -203,6 +203,42 @@ var doctors = {
     }
 };
 
+var timings = {
+    "text": "Select timings",
+    "quick_replies":[
+        {
+            "content_type":"text",
+            "title":"10.40 AM",
+            "payload":"TIME1"
+        },
+        {
+            "content_type":"text",
+            "title":"11.40 AM",
+            "payload":"TIME2"
+        },
+        {
+            "content_type":"text",
+            "title":"12.40 PM",
+            "payload":"TIME3"
+        },
+        {
+            "content_type":"text",
+            "title":"01.40 PM",
+            "payload":"TIME4"
+        },
+        {
+            "content_type":"text",
+            "title":"03.00 PM",
+            "payload":"TIME5"
+        },
+        {
+            "content_type":"text",
+            "title":"04.00 PM",
+            "payload":"TIME6"
+        }
+    ]
+}
+
 
 
 var appointments = {
@@ -314,6 +350,9 @@ function receivedMessage(event) {
 
         case 'hospitals':
             sendHospitals(senderID);
+            break;
+        case 'timings':
+            sendTimings(senderID);
             break;
 
       default:
@@ -487,6 +526,20 @@ function sendAppointments(recipientId) {
     // check greeting is here and is confident
     console.log("In sendAppointments ");
     var msg = appointments;
+    console.log(JSON.stringify(msg));
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: msg
+    };
+    callSendAPI(messageData);
+}
+
+function sendTimings(recipientId) {
+    // check greeting is here and is confident
+    console.log("In sendTimings ");
+    var msg = timings;
     console.log(JSON.stringify(msg));
     var messageData = {
         recipient: {
