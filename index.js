@@ -19,8 +19,7 @@ var hospitals = {
     attachment: {
         type: 'template',
         payload: {
-            template_type: 'list',
-            top_element_style: "compact",
+            template_type: 'generic',
             elements: [
                 {
                     title: 'HealthPartners Bloomington Clinic',
