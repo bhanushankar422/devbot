@@ -2,32 +2,41 @@ const UserStore = require('../stores/user-store')
 //const {dateString} = require('../utils/date-string-format')
 const Doctor = require('../Doctor')
 
+let resp = {
+  attachment: {
+    type: 'template',
+    payload: {
+      template_type: 'generic',
+      elements: []
+    }
+  }
+};
 
 const doctorsCarosel = function(recipientId){
     const user = UserStore.get(recipientId) || UserStore.insert({id: recipientId});
 
-    const carouselItems = Doctor.DOCTORS.map(doctorToCarouselItem);
+    let carouselItems = [];
+    for(var i=0; i<Doctor.DOCTORS.length; i++ ){
+      let tempForm = Doctor.DOCTORS[i];
+      carouselItems.push(doctorToCarouselItem(tempForm));
+    }
 
-    return {
-        attachment: {
-            type: 'template',
-            payload: {
-                template_type: 'generic',
-                elements: carouselItems,
-            },
-        },
-    };
+    resp['attachment']['payload']['elements'] = carouselItems;
+    return resp;
 };
 module.exports = doctorsCarosel;
 
-const doctorToCarouselItem = function({id, name, description, images: {original}}){
+const doctorToCarouselItem = function(doctor){
     return {
-        title: name,
-        image_url: original,
-        subtitle: description,
+        title: doctor.Name,
+        image_url: doctor.image,
+        subtitle: doctor.Speciality,
         buttons: [
-            viewDetailsButton(id),
-            chooseGiftButton(id),
+          {
+            "type":"postback",
+            "title":"Bookmark Item",
+            "payload":doctor.Name
+          }
         ],
     };
 };
