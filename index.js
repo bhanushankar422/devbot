@@ -357,7 +357,7 @@ function handleMessage(message, senderID) {
     }
 }
 
-function sendDoctorsList(senderID) {
+function sendDoctorsList(recipientId) {
   // check greeting is here and is confident
   console.log("In sendDoctorsList ");
   var msg = resp;
