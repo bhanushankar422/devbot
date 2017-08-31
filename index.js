@@ -365,18 +365,19 @@ function receivedPostback(event) {
     if(payload.startsWith('DOCTOR')){
         selection['doctor'] = payload;
         console.log('Payload has DOCTOR');
-        console.log(JSON.stringify(selection));
     }
     if(payload.startsWith('HOSPITAL')){
         selection['hospital'] = payload;
+        console.log('Payload has DOCTOR');
     }
     if(payload.startsWith('TIME')){
         selection['time'] = payload;
+        console.log('Payload has DOCTOR');
     }
     console.log(JSON.stringify(selection));
 
     userSelectionMap.set(recipientID,selection);
-    console.log(JSON.stringify(userSelectionMap));
+    console.log(JSON.stringify(userSelectionMap.get(recipientID)));
 
   console.log("Received postback for user %d and page %d with payload '%s' " + 
     "at %d", senderID, recipientID, payload, timeOfPostback);
