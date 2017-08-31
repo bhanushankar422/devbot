@@ -122,7 +122,7 @@ var doctors = {
             elements: [
                 {
                     title: 'Darrell G. Boychuk, DDS',
-                    image_url: 'https://www.healthpartners.com/locator/photos/mini/boychuk_darrell_g_dds.jpg',
+                    image_url: 'https://www.healthpartners.com/locator/photos/boychuk_darrell_g_dds.jpg',
                     subtitle: 'TMD',
                     buttons: [
                         {
@@ -134,7 +134,7 @@ var doctors = {
                 },
                 {
                     title: 'David R. Louis, DDS',
-                    image_url: 'https://www.healthpartners.com/locator/photos/mini/louis_david_r_dds.jpg',
+                    image_url: 'https://www.healthpartners.com/locator/photos/louis_david_r_dds.jpg',
                     subtitle: 'General Dentistry',
                     buttons: [
                         {
@@ -182,7 +182,7 @@ var doctors = {
                 },
                 {
                     title: 'Ayman Ali, MD',
-                    image_url: 'https://www.healthpartners.com/locator/photos/mini/ali_ayman_md.jpg',
+                    image_url: 'https://www.healthpartners.com/locator/photos/ali_ayman_md.jpg',
                     subtitle: 'Family Medicine',
                     buttons: [
                         {
@@ -206,7 +206,7 @@ var doctors = {
                 },
                 {
                     title: 'Sara M. Blackburn, MD',
-                    image_url: 'https://www.healthpartners.com/locator/photos/mini/blackburn_sara_m_md.jpg',
+                    image_url: 'https://www.healthpartners.com/locator/photos/blackburn_sara_m_md.jpg',
                     subtitle: 'Pediatrics',
                     buttons: [
                         {
@@ -218,7 +218,7 @@ var doctors = {
                 },
                 {
                     title: 'Gerald A. Brost, DDS',
-                    image_url: 'https://www.healthpartners.com/locator/photos/mini/brost_gerald_a_dds..jpg',
+                    image_url: 'https://www.healthpartners.com/locator/photos/brost_gerald_a_dds..jpg',
                     subtitle: 'General Dentistry',
                     buttons: [
                         {
@@ -230,7 +230,7 @@ var doctors = {
                 },
                 {
                     title: 'Stephen S. Clifford, DDS',
-                    image_url: 'https://www.healthpartners.com/locator/photos/mini/clifford_stephen_s_dds.jpg',
+                    image_url: 'https://www.healthpartners.com/locator/photos/clifford_stephen_s_dds.jpg',
                     subtitle: 'Orthodontics',
                     buttons: [
                         {
