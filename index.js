@@ -488,9 +488,9 @@ function receivedPostback(event) {
         selection['doctor'] = payload;
         userSelectionMap.set(recipientID,selection);
         if(!selection['hospital'] || selection['hospital']==''){
-            sendHospitals(recipientID);
+            sendHospitals(senderID);
         }else if(!selection['time'] || selection['time']==''){
-            sendTimings(recipientID);
+            sendTimings(senderID);
         }
         console.log('Payload has DOCTOR');
     }
@@ -498,9 +498,9 @@ function receivedPostback(event) {
         selection['hospital'] = payload;
         userSelectionMap.set(recipientID,selection);
         if(!selection['doctor'] || selection['doctor']==''){
-            sendDoctorsList(recipientID);
+            sendDoctorsList(senderID);
         }else if(!selection['time'] || selection['time']==''){
-            sendTimings(recipientID);
+            sendTimings(senderID);
         }
         console.log('Payload has HOSPITAL');
     }
@@ -508,9 +508,9 @@ function receivedPostback(event) {
         selection['time'] = payload;
         userSelectionMap.set(recipientID,selection);
         if(!selection['doctor'] || selection['doctor']==''){
-            sendDoctorsList(recipientID);
+            sendDoctorsList(senderID);
         }else if(!selection['hospital'] || selection['hospital']==''){
-            sendHospitals(recipientID);
+            sendHospitals(senderID);
         }
         console.log('Payload has TIME');
     }
