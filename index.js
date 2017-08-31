@@ -312,6 +312,10 @@ function receivedMessage(event) {
         sendDoctorsList(senderID);
         break;
 
+        case 'hospitals':
+            sendHospitals(senderID);
+            break;
+
       default:
         //sendTextMessage(senderID, messageText);
         handleMessage(message, senderID);
