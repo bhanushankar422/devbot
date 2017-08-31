@@ -8,7 +8,7 @@ const messages = require('./messenger-api-helpers/messages')
 
 const PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN
 
-let resp = {
+var resp = {
     attachment: {
         type: 'template',
         payload: {
