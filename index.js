@@ -8,6 +8,137 @@ const messages = require('./messenger-api-helpers/messages')
 
 const PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN
 
+let resp = {
+    attachment: {
+        type: 'template',
+        payload: {
+            template_type: 'generic',
+            elements: [
+                {
+                    title: 'Darrell G. Boychuk, DDS',
+                    image_url: 'https://www.healthpartners.com/locator/photos/mini/boychuk_darrell_g_dds.jpg',
+                    subtitle: 'TMD',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR1'
+                        }
+                    ]
+                },
+                {
+                    title: 'David R. Louis, DDS',
+                    image_url: 'https://www.healthpartners.com/locator/photos/mini/louis_david_r_dds.jpg',
+                    subtitle: 'General Dentistry',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR2'
+                        }
+                    ]
+                },
+                {
+                    title: 'Pamela J. Becker, PT',
+                    image_url: 'https://www.healthpartners.com/ucm/groups/public/@hp/@public/documents/images/dev_068842.png',
+                    subtitle: 'Physical Therapy',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR3'
+                        }
+                    ]
+                },
+                {
+                    title: 'Jose A. Alba Hernandez, PT',
+                    image_url: 'https://www.healthpartners.com/ucm/groups/public/@hp/@public/documents/images/dev_068842.png',
+                    subtitle: 'Physical Therapy',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR4'
+                        }
+                    ]
+                },
+                {
+                    title: 'Katherine Louise Anglin, MD',
+                    image_url: 'https://www.healthpartners.com/ucm/groups/public/@hp/@public/documents/images/dev_068842.png',
+                    subtitle: 'Family Medicine',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR5'
+                        }
+                    ]
+                },
+                {
+                    title: 'Ayman Ali, MD',
+                    image_url: 'https://www.healthpartners.com/locator/photos/mini/ali_ayman_md.jpg',
+                    subtitle: 'Family Medicine',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR6'
+                        }
+                    ]
+                },
+                {
+                    title: 'Frank E. Banfield, MD',
+                    image_url: 'https://www.healthpartners.com/ucm/groups/public/@hp/@public/documents/images/dev_068842.png',
+                    subtitle: 'Pediatrics',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR7'
+                        }
+                    ]
+                },
+                {
+                    title: 'Sara M. Blackburn, MD',
+                    image_url: 'https://www.healthpartners.com/locator/photos/mini/blackburn_sara_m_md.jpg',
+                    subtitle: 'Pediatrics',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR8'
+                        }
+                    ]
+                },
+                {
+                    title: 'Gerald A. Brost, DDS',
+                    image_url: 'https://www.healthpartners.com/locator/photos/mini/brost_gerald_a_dds..jpg',
+                    subtitle: 'General Dentistry',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR9'
+                        }
+                    ]
+                },
+                {
+                    title: 'Stephen S. Clifford, DDS',
+                    image_url: 'https://www.healthpartners.com/locator/photos/mini/clifford_stephen_s_dds.jpg',
+                    subtitle: 'Orthodontics',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'DOCTOR10'
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+};
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -229,7 +360,7 @@ function handleMessage(message, senderID) {
 function sendDoctorsList(senderID) {
   // check greeting is here and is confident
   console.log("In sendDoctorsList ");
-  var msg = messages.doctorsCarosel(senderID);
+  var msg = resp;
   console.log(JSON.stringify(msg));
   var messageData = {
     recipient: {
