@@ -15,6 +15,62 @@ var userSelectionObj = {
     time:''
 };
 
+var hospitals = {
+    attachment: {
+        type: 'template',
+        payload: {
+            template_type: 'list',
+            top_element_style: "compact",
+            elements: [
+                {
+                    title: 'HealthPartners Bloomington Clinic',
+                    subtitle: 'Bloomington',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'HOSPITAL2'
+                        }
+                    ]
+                },
+                {
+                    title: 'HealthPartners Bloomington Dental Clinic',
+                    subtitle: 'Bloomington',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'HOSPITAL1'
+                        }
+                    ]
+                },
+                {
+                    title: 'HealthPartners Eden Prairie Dental Clinic',
+                    subtitle: 'Eden Prairie',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'HOSPITAL3'
+                        }
+                    ]
+                },
+                {
+                    title: 'Physicians Neck and Back Clinic',
+                    subtitle: 'Edina',
+                    buttons: [
+                        {
+                            "type":"postback",
+                            "title":"Select",
+                            "payload":'HOSPITAL4'
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+};
+
 
 var doctors = {
     attachment: {
@@ -440,7 +496,7 @@ function sendAppointments(recipientId) {
 function sendHospitals(recipientId) {
     // check greeting is here and is confident
     console.log("In sendHospitals ");
-    var msg = appointments;
+    var msg = hospitals;
     console.log(JSON.stringify(msg));
     var messageData = {
         recipient: {
