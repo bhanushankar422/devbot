@@ -364,6 +364,8 @@ function receivedPostback(event) {
     }
     if(payload.startsWith('DOCTOR')){
         selection['doctor'] = payload;
+        console.log('Payload has DOCTOR');
+        console.log(JSON.stringify(selection));
     }
     if(payload.startsWith('HOSPITAL')){
         selection['hospital'] = payload;
@@ -371,6 +373,7 @@ function receivedPostback(event) {
     if(payload.startsWith('TIME')){
         selection['time'] = payload;
     }
+    console.log(JSON.stringify(selection));
 
     userSelectionMap.set(recipientID,selection);
     console.log(JSON.stringify(userSelectionMap));
