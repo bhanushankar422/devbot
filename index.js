@@ -7,6 +7,14 @@ const app = express()
 
 
 const PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN
+var userSelectionMap = new Map();
+var userSelectionObj = {
+    name:'',
+    doctor:'',
+    hospital:'',
+    time:''
+};
+
 
 var doctors = {
     attachment: {
@@ -229,7 +237,6 @@ function receivedMessage(event) {
 
   var messageText = message.text;
   var messageAttachments = message.attachments;
-  
 
   if (messageText) {
 
@@ -345,9 +352,28 @@ function receivedPostback(event) {
   var recipientID = event.recipient.id;
   var timeOfPostback = event.timestamp;
 
+
+
   // The 'payload' param is a developer-defined field which is set in a postback 
   // button for Structured Messages. 
   var payload = event.postback.payload;
+
+    var selection = Object.assign({}, this.dependent);
+    if(userSelectionMap.has(recipientID)){
+        selection = userSelectionMap.get(recipientID);
+    }
+    if(payload.startsWith('DOCTOR')){
+        selection['doctor'] = payload;
+    }
+    if(payload.startsWith('HOSPITAL')){
+        selection['hospital'] = payload;
+    }
+    if(payload.startsWith('TIME')){
+        selection['time'] = payload;
+    }
+
+    userSelectionMap.set(recipientID,selection);
+    console.log(JSON.stringify(userSelectionMap));
 
   console.log("Received postback for user %d and page %d with payload '%s' " + 
     "at %d", senderID, recipientID, payload, timeOfPostback);
