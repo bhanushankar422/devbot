@@ -381,6 +381,8 @@ function receivedMessage(event) {
         if(quick_reply.startsWith('TIME')){
             selection['time'] = quick_reply;
             console.log('Payload has TIME');
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            sendConfirmation(senderID, confirmation);
         }
         console.log(JSON.stringify(selection));
 
