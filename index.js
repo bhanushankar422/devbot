@@ -7,6 +7,49 @@ const app = express()
 
 
 const PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN
+
+var mapAttr = {
+    HOSPITAL1: 'HealthPartners Bloomington Clinic',
+    HOSPITAL2: 'HealthPartners Bloomington Dental Clinic',
+    HOSPITAL3: 'HealthPartners Eden Prairie Dental Clinic',
+    HOSPITAL4: 'Physicians Neck and Back Clinic',
+    DOCTOR1: 'Darrell G. Boychuk, DDS',
+    DOCTOR2: 'David R. Louis, DDS',
+    DOCTOR3: 'Pamela J. Becker, PT',
+    DOCTOR4: 'Jose A. Alba Hernandez, PT',
+    DOCTOR5: 'Katherine Louise Anglin, MD',
+    DOCTOR6: 'Ayman Ali, MD',
+    DOCTOR7: 'Frank E. Banfield, MD',
+    DOCTOR8: 'Sara M. Blackburn, MD',
+    DOCTOR9: 'Gerald A. Brost, DDS',
+    DOCTOR10: 'Stephen S. Clifford, DDS',
+    TIME1: '10.40 AM',
+    TIME2: '11.40 AM',
+    TIME3: '12.40 PM',
+    TIME4: '01.40 PM',
+    TIME5: '03.00 PM',
+    TIME6: '04.00 PM',
+}
+
+var persistentMenu = {"persistent_menu":[
+    {
+        "locale":"default",
+        "call_to_actions":[
+            {
+                "title":"Options",
+                "type":"nested",
+                "call_to_actions":[
+                    {
+                        "title":"Appointment",
+                        "type":"postback",
+                        "payload":"Appointment"
+                    }
+                ]
+            }
+        ]
+    }
+]};
+
 var userSelectionMap = new Map();
 var userSelectionObj = {
     name:'',
@@ -28,7 +71,7 @@ var hospitals = {
                         {
                             "type":"postback",
                             "title":"Select",
-                            "payload":'HOSPITAL2'
+                            "payload":'HOSPITAL1'
                         }
                     ]
                 },
@@ -39,7 +82,7 @@ var hospitals = {
                         {
                             "type":"postback",
                             "title":"Select",
-                            "payload":'HOSPITAL1'
+                            "payload":'HOSPITAL2'
                         }
                     ]
                 },
@@ -490,6 +533,9 @@ function receivedPostback(event) {
             sendHospitals(senderID);
         }else if(!selection['time'] || selection['time']==''){
             sendTimings(senderID);
+        }else{
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            sendConfirmation(senderID, confirmation);
         }
         console.log('Payload has DOCTOR');
     }
@@ -500,6 +546,9 @@ function receivedPostback(event) {
             sendDoctorsList(senderID);
         }else if(!selection['time'] || selection['time']==''){
             sendTimings(senderID);
+        }else{
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            sendConfirmation(senderID, confirmation);
         }
         console.log('Payload has HOSPITAL');
     }
@@ -510,6 +559,9 @@ function receivedPostback(event) {
             sendDoctorsList(senderID);
         }else if(!selection['hospital'] || selection['hospital']==''){
             sendHospitals(senderID);
+        }else{
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            sendConfirmation(senderID, confirmation);
         }
         console.log('Payload has TIME');
     }
@@ -602,4 +654,10 @@ function sendHospitals(recipientId) {
         message: msg
     };
     callSendAPI(messageData);
+}
+
+function sendConfirmation(senderId, confirmation) {
+    // check greeting is here and is confident
+    console.log("In sendConfirmation ");
+    sendTextMessage(senderId, confirmation);
 }
