@@ -337,7 +337,7 @@ function receivedMessage(event) {
             selection = userSelectionMap.get(recipientID);
         }
         if(quick_reply.startsWith('TIME')){
-            selection['time'] = payload;
+            selection['time'] = quick_reply;
             console.log('Payload has TIME');
         }
         console.log(JSON.stringify(selection));
@@ -484,19 +484,37 @@ function receivedPostback(event) {
     }
     if(payload.startsWith('DOCTOR')){
         selection['doctor'] = payload;
+        userSelectionMap.set(recipientID,selection);
+        if(!selection['hospital'] || selection['hospital']==''){
+            sendHospitals(recipientID);
+        }else if(!selection['time'] || selection['time']==''){
+            sendTimings(recipientID);
+        }
         console.log('Payload has DOCTOR');
     }
     if(payload.startsWith('HOSPITAL')){
         selection['hospital'] = payload;
+        userSelectionMap.set(recipientID,selection);
+        if(!selection['doctor'] || selection['doctor']==''){
+            sendDoctorsList(recipientID);
+        }else if(!selection['time'] || selection['time']==''){
+            sendTimings(recipientID);
+        }
         console.log('Payload has HOSPITAL');
     }
     if(payload.startsWith('TIME')){
         selection['time'] = payload;
+        userSelectionMap.set(recipientID,selection);
+        if(!selection['doctor'] || selection['doctor']==''){
+            sendDoctorsList(recipientID);
+        }else if(!selection['hospital'] || selection['hospital']==''){
+            sendHospitals(recipientID);
+        }
         console.log('Payload has TIME');
     }
     console.log(JSON.stringify(selection));
 
-    userSelectionMap.set(recipientID,selection);
+
     console.log(JSON.stringify(userSelectionMap.get(recipientID)));
 
   console.log("Received postback for user %d and page %d with payload '%s' " + 
