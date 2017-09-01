@@ -382,6 +382,7 @@ function receivedMessage(event) {
         if(quick_reply.startsWith('TIME')){
             selection['time'] = quick_reply;
             console.log('Payload has TIME');
+            console.log(JSON.stringify(selection));
             var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + mapAttr[selection['date']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
             sendConfirmation(senderID, confirmation);
         }
@@ -608,6 +609,7 @@ function handleDateMessage(message, senderID, recipientID) {
             var tempDate = new Date(datetime['values'][0].value);
             console.log("In handleDateMessage dateString " + tempDate.toDateString());
             selection['date'] = tempDate.toDateString();
+            console.log(JSON.stringify(selection));
             userSelectionMap.set(recipientID,selection);
         }
         sendTimings(senderID);
