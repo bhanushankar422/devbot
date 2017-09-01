@@ -599,7 +599,7 @@ function handleDateMessage(message, senderID, recipientID) {
     console.log("In handleDateMessage ");
     console.log(JSON.stringify(message));
     const datetime = firstEntity(message.nlp, 'datetime');
-    console.log(JSON.stringify(greeting));
+    console.log(JSON.stringify(datetime));
     if (datetime && datetime.confidence > 0.8) {
         console.log("In handleDateMessage if " + datetime['values'][0].value);
         var selection = Object.assign({}, userSelectionObj);
