@@ -606,7 +606,8 @@ function handleDateMessage(message, senderID, recipientID) {
         if(userSelectionMap.has(recipientID)){
             selection = userSelectionMap.get(recipientID);
             var tempDate = new Date(datetime['values'][0].value);
-            selection['time'] = tempDate.toDateString();
+            console.log("In handleDateMessage dateString " + tempDate.toDateString());
+            selection['date'] = tempDate.toDateString();
         }
         sendTimings(senderID);
     }
