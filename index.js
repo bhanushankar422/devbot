@@ -425,7 +425,7 @@ function receivedMessage(event) {
             break;
 
       default:
-          if(caseStatement.indexOf('AM') == -1 && caseStatement.indexOf('PM')){
+          if(caseStatement.indexOf('am') == -1 && caseStatement.indexOf('pm')){
               handleDateMessage(message, senderID, recipientID);
           }
 
