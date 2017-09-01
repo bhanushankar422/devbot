@@ -540,7 +540,7 @@ function receivedPostback(event) {
         }else if(!selection['time'] || selection['time']==''){
             sendTimings(senderID);
         }else{
-            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + mapAttr[selection['date']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
             sendConfirmation(senderID, confirmation);
         }
         console.log('Payload has DOCTOR');
@@ -555,7 +555,7 @@ function receivedPostback(event) {
         }else if(!selection['time'] || selection['time']==''){
             sendTimings(senderID);
         }else{
-            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + mapAttr[selection['date']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
             sendConfirmation(senderID, confirmation);
         }
         console.log('Payload has HOSPITAL');
