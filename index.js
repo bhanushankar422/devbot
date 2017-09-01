@@ -55,6 +55,7 @@ var userSelectionObj = {
     name:'',
     doctor:'',
     hospital:'',
+    date:'',
     time:''
 };
 
@@ -423,6 +424,7 @@ function receivedMessage(event) {
             break;
 
       default:
+            handleDateMessage(message, senderID, recipientID);
         //sendTextMessage(senderID, messageText);
         //handleMessage(message, senderID);
     }
@@ -533,6 +535,8 @@ function receivedPostback(event) {
         userSelectionMap.set(recipientID,selection);
         if(!selection['hospital'] || selection['hospital']==''){
             sendHospitals(senderID);
+        }else if(!selection['date'] || selection['date']==''){
+            askDate(senderID);
         }else if(!selection['time'] || selection['time']==''){
             sendTimings(senderID);
         }else{
@@ -546,6 +550,8 @@ function receivedPostback(event) {
         userSelectionMap.set(recipientID,selection);
         if(!selection['doctor'] || selection['doctor']==''){
             sendDoctorsList(senderID);
+        }else if(!selection['date'] || selection['date']==''){
+            askDate(senderID);
         }else if(!selection['time'] || selection['time']==''){
             sendTimings(senderID);
         }else{
@@ -584,6 +590,28 @@ function firstEntity(nlp, name) {
     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
 
+function handleDateMessage(message, senderID, recipientID) {
+    var messageId = message.mid;
+
+    var messageText = message.text;
+    var messageAttachments = message.attachments;
+    // check greeting is here and is confident
+    console.log("In handleDateMessage ");
+    console.log(JSON.stringify(message));
+    const datetime = firstEntity(message.nlp, 'datetime');
+    console.log(JSON.stringify(greeting));
+    if (datetime && datetime.confidence > 0.8) {
+        console.log("In handleDateMessage if " + datetime['values'][0].value);
+        var selection = Object.assign({}, userSelectionObj);
+        if(userSelectionMap.has(recipientID)){
+            selection = userSelectionMap.get(recipientID);
+            var tempDate = new Date(datetime['values'][0].value);
+            selection['time'] = tempDate.toDateString();
+        }
+        sendTimings(senderID);
+    }
+}
+
 function handleMessage(message, senderID) {
   var messageId = message.mid;
 
@@ -600,6 +628,12 @@ function handleMessage(message, senderID) {
     } else {
         sendTextMessage(senderID, 'Response ' + messageText);
     }
+}
+
+function askDate(recipientId) {
+    // check greeting is here and is confident
+    console.log("In askDate ");
+    sendTextMessage(recipientId, 'Provide the date');
 }
 
 function sendDoctorsList(recipientId) {
