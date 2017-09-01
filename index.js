@@ -383,7 +383,7 @@ function receivedMessage(event) {
             selection['time'] = quick_reply;
             console.log('Payload has TIME');
             console.log(JSON.stringify(selection));
-            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + mapAttr[selection['date']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + selection['date'] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
             sendConfirmation(senderID, confirmation);
         }
         console.log(JSON.stringify(selection));
@@ -541,7 +541,7 @@ function receivedPostback(event) {
         }else if(!selection['time'] || selection['time']==''){
             sendTimings(senderID);
         }else{
-            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + mapAttr[selection['date']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + selection['date']  + ' at ' + mapAttr[selection['time']] + ' is confirmed';
             sendConfirmation(senderID, confirmation);
         }
         console.log('Payload has DOCTOR');
@@ -556,7 +556,7 @@ function receivedPostback(event) {
         }else if(!selection['time'] || selection['time']==''){
             sendTimings(senderID);
         }else{
-            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + mapAttr[selection['date']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + selection['date']  + ' at ' + mapAttr[selection['time']] + ' is confirmed';
             sendConfirmation(senderID, confirmation);
         }
         console.log('Payload has HOSPITAL');
@@ -569,7 +569,7 @@ function receivedPostback(event) {
         }else if(!selection['hospital'] || selection['hospital']==''){
             sendHospitals(senderID);
         }else{
-            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + mapAttr[selection['date']] + ' at ' + mapAttr[selection['time']] + ' is confirmed';
+            var confirmation = 'Your appointment with ' + mapAttr[selection['doctor']] + ' in ' + mapAttr[selection['hospital']] + ' on ' + selection['date']  + ' at ' + mapAttr[selection['time']] + ' is confirmed';
             sendConfirmation(senderID, confirmation);
         }
         console.log('Payload has TIME');
